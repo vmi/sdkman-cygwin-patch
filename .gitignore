@@ -1,0 +1,9 @@
+*~
+.*~
+\#*
+.\#*
+*.log
+/.sdkman
+/.debug
+/logs
+/sdkman_installer.sh*

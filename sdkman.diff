@@ -1,0 +1,17 @@
+diff --git a/src/sdkman-main.sh b/src/sdkman-main.sh
+index c46ba11..1c7cbb4 100644
+--- a/src/sdkman-main.sh
++++ b/src/sdkman-main.sh
+@@ -130,7 +130,11 @@ function sdk() {
+ 	local native_command="${SDKMAN_DIR}/libexec/${COMMAND}"
+ 	
+ 	if [ -f "$native_command" ]; then
+-		"$native_command" "${@:2}"
++		if "$cygwin"; then
++			SDKMAN_DIR="$(cygpath -aw "$SDKMAN_DIR")" "$native_command" "${@:2}"
++		else
++			"$native_command" "${@:2}"
++		fi
+ 
+ 	elif [ -n "$CMD_FOUND" ]; then
+ 
